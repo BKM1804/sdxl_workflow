@@ -25,5 +25,10 @@ INFER_SCHEMA = {
         'type': int,
         'required': False,
         'default': 1
+    },
+    'identifier': {
+        'type': str,
+        'required': False,
+        'default': "sks"
     }
 }

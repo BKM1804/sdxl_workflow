@@ -296,6 +296,7 @@ def init_specific_nodes(job_id: str):
 def main(
     job_id: str,
     prompt: str,
+    identifier: str,
     width: int = 768,
     height: int = 1024,
 ):
@@ -315,12 +316,13 @@ def main(
         randomnoise_50 = randomnoise.get_noise(noise_seed=random.randint(1, 2**64))
 
         cliptextencode_317 = cliptextencode.encode(
-            text=f"embedding:{job_id}.pt {prompt}",
+            # text=f"embedding:{job_id}.pt {prompt}",
+            text=prompt.replace(identifier , f'embedding:{job_id}.pt'),
             clip=get_value_at_index(checkpointloadersimple_316, 1),
         )
 
         cliptextencode_318 = cliptextencode.encode(
-            text="bokeh, film grain, bokeh, dreamy haze, technicolor, underexposed, low quality, lowres",
+            text="(worst quality, low quality, normal quality), disabled body, sketches, (manicure:1.2), lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, extra fingers, fewer digits, cropped, jpeg artifacts, signature, watermark, username, blurry, momochrome, (ugly) , bad hand ,  bad leg , lost fingers, 4 fingers.",
             clip=get_value_at_index(checkpointloadersimple_316, 1),
         )
 
@@ -469,8 +471,8 @@ def main(
             crop_h=0,
             target_width=width,
             target_height=height,
-            text_g=f"embedding:{job_id}.pt {prompt}",
-            text_l=f"embedding:{job_id}.pt {prompt}",
+            text_g=prompt.replace(identifier , f'embedding:{job_id}.pt'),
+            text_l=prompt.replace(identifier , f'embedding:{job_id}.pt'),
             clip=get_value_at_index(checkpointloadersimple_316, 1),
         )
 
@@ -481,8 +483,8 @@ def main(
             crop_h=0,
             target_width=width,
             target_height=height,
-            text_g="bokeh, film grain, bokeh, dreamy haze, technicolor, underexposed, low quality, lowres",
-            text_l="bokeh, film grain, bokeh, dreamy haze, technicolor, underexposed, low quality, lowres",
+            text_g="(worst quality, low quality, normal quality), disabled body, sketches, (manicure:1.2), lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, extra fingers, fewer digits, cropped, jpeg artifacts, signature, watermark, username, blurry, momochrome, (ugly) , bad hand ,  bad leg , lost fingers, 4 fingers.",
+            text_l="(worst quality, low quality, normal quality), disabled body, sketches, (manicure:1.2), lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, extra fingers, fewer digits, cropped, jpeg artifacts, signature, watermark, username, blurry, momochrome, (ugly) , bad hand ,  bad leg , lost fingers, 4 fingers.",
             clip=get_value_at_index(checkpointloadersimple_316, 1),
         )
 

@@ -46,6 +46,7 @@ def run(job):
             prompt=validate_train['prompt'],
             width=validate_train['width'],
             height=validate_train['height'],
+            identifier = validate_train['identifier']
         )
         output.append(os.path.join("output", res["ui"]["images"][0]["subfolder"], res["ui"]["images"][0]["filename"]))
     print(f"Time taken: {time.time() - since} seconds")
