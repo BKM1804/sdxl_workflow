@@ -1,0 +1,10 @@
+{
+    "main_pass":
+    [
+        "-y", "-c:v", "hevc_nvenc",
+        "-vtag", "hvc1", 
+        "-qp", "22"
+    ],
+    "audio_pass": ["-c:a", "aac"],
+    "extension": "mp4"
+}

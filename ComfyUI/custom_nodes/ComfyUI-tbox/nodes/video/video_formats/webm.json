@@ -1,0 +1,11 @@
+{
+    "main_pass":
+    [
+        "-y",
+        "-crf", 20, 
+        "-pix_fmt", "yuv420p",
+        "-b:v", "0"
+    ],
+    "audio_pass": ["-c:a", "libvorbis"],
+    "extension": "webm"
+}

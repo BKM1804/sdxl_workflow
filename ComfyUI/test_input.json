@@ -1,0 +1,10 @@
+{
+    "input": {
+        "sdxl_checkpoint_path": "https://lustylens.s3.amazonaws.com/generations/95c8e6ab-750b-42ee-9e06-597bbd1b3c55-e1.zip",
+        "flux_checkpoint_path": "https://lustylens.s3.amazonaws.com/generations/output_70ca3ac4-1a71-408f-8f93-d601123b3737-e1.safetensors",
+        "prompt": "a woman doing sexy pose, naked, front view, luxurious bedroom, a window, snowy forest, highres, prominent grain, muted low grain.",
+        "width": 768,
+        "height": 1024,
+        "num_images": 1
+    }
+}

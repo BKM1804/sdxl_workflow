@@ -1,0 +1,13 @@
+{
+    "main_pass":
+    [
+        "-y", "-c:v", "libx265",
+        "-vtag", "hvc1",
+        "-pix_fmt", "yuv420p10le",
+        "-crf", "22",
+        "-preset", "medium",
+        "-x265-params", "log-level=quiet"
+    ],
+    "audio_pass": ["-c:a", "aac"],
+    "extension": "mp4"
+}
