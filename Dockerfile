@@ -16,7 +16,7 @@ COPY ComfyUI/requirements.txt /ComfyUI/requirements.txt
 COPY ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt /ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt
 COPY ComfyUI/custom_nodes/comfyui_densepose/requirements.txt /ComfyUI/custom_nodes/comfyui_densepose/requirements.txt
 COPY ComfyUI/custom_nodes/comfyui_face_parsing/requirements.txt /ComfyUI/custom_nodes/comfyui_face_parsing/requirements.txt
-COPY ComfyUI/custom_nodes/ComfyUI-Impact-Pack/requirements.txt /ComfyUI/custom_nodes/ComfyUI-Impact-Pack/requirements.txt
+# COPY ComfyUI/custom_nodes/ComfyUI-Impact-Pack/requirements.txt /ComfyUI/custom_nodes/ComfyUI-Impact-Pack/requirements.txt
 COPY ComfyUI/custom_nodes/comfyui-reactor-node/requirements.txt /ComfyUI/custom_nodes/comfyui-reactor-node/requirements.txt
 COPY ComfyUI/custom_nodes/ComfyUI-tbox/requirements.txt /ComfyUI/custom_nodes/ComfyUI-tbox/requirements.txt
 COPY ComfyUI/custom_nodes/rgthree-comfy/requirements.txt /ComfyUI/custom_nodes/rgthree-comfy/requirements.txt
