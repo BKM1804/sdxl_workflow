@@ -34,7 +34,7 @@ NODE_CLASS_MAPPINGS = {
     "VideoInfo": VideoInfoNode,
     "BatchManager": BatchManagerNode,
     "ConstrainImageNode": ConstrainImageNode,
-    "DensePosePreprocessor": DensePose_Preprocessor,
+    # "DensePosePreprocessor": DensePose_Preprocessor,
     "DWPosePreprocessor": DWPose_Preprocessor,
     "AnimalPosePreprocessor": AnimalPose_Preprocessor,
     "MiDaSDepthPreprocessor": MIDAS_Depth_Map_Preprocessor,
@@ -53,7 +53,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "VideoInfo": "Video Info", 
     "BatchManager": "Batch Manager",
     "ConstrainImageNode": "Image Constrain",
-    "DensePosePreprocessor": "DensePose Estimator",
+    # "DensePosePreprocessor": "DensePose Estimator",
     "DWPosePreprocessor": "DWPose Estimator",
     "AnimalPosePreprocessor": "AnimalPose Estimator",
     "MiDaSDepthPreprocessor": "MiDaS Depth Estimator"
