@@ -234,6 +234,7 @@ def init_foundaton_nodes():
         "ImageResizeCalculator(FaceParsing)"
     ]()
     imagescaleby = NODE_CLASS_MAPPINGS["ImageScaleBy"]()
+    # imagescale = NODE_CLASS_MAPPINGS['ImageScale']() #*********************************
     cliptextencodesdxl = NODE_CLASS_MAPPINGS["CLIPTextEncodeSDXL"]()
     denseposepreprocessor = NODE_CLASS_MAPPINGS["DensePosePreprocessor"]()
     imagetomask = NODE_CLASS_MAPPINGS["ImageToMask"]()
@@ -333,8 +334,8 @@ def main(
         ksampler_320 = ksampler.sample(
             seed=random.randint(1, 2**64),
             steps=30,
-            cfg=4,
-            sampler_name="dpmpp_sde",
+            cfg=0.9,
+            sampler_name="dpmpp_2m_cfg_pp",
             scheduler="karras",
             denoise=1,
             model=get_value_at_index(loraloadermodelonly_323, 0),
@@ -428,6 +429,14 @@ def main(
             vae=get_value_at_index(vaeloader_10, 0),
         )
 
+
+        imagescale_309 = imagescale.upscale(
+            upscale_method="lanczos",
+            width=width,
+            height=height,
+            crop="disabled",
+            image=get_value_at_index(vaedecode_8, 0),
+        )
         bboxdetectfaceparsing_302 = bboxdetectfaceparsing.main(
             threshold=0.3,
             dilation=8,
@@ -465,24 +474,24 @@ def main(
         )
 
         cliptextencodesdxl_357 = cliptextencodesdxl.encode(
-            width=width,
-            height=height,
+            width=width*4,
+            height=height*4,
             crop_w=0,
             crop_h=0,
-            target_width=width,
-            target_height=height,
+            target_width=width*4,
+            target_height=height*4,
             text_g=prompt.replace(identifier , f'embedding:{job_id}.pt'),
             text_l=prompt.replace(identifier , f'embedding:{job_id}.pt'),
             clip=get_value_at_index(checkpointloadersimple_316, 1),
         )
 
         cliptextencodesdxl_358 = cliptextencodesdxl.encode(
-            width=width,
-            height=height,
+            width=width*4,
+            height=height*4,
             crop_w=0,
             crop_h=0,
-            target_width=width,
-            target_height=height,
+            target_width=width*4,
+            target_height=height*4,
             text_g="(worst quality, low quality, normal quality), disabled body, sketches, (manicure:1.2), lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, extra fingers, fewer digits, cropped, jpeg artifacts, signature, watermark, username, blurry, momochrome, (ugly) , bad hand ,  bad leg , lost fingers, 4 fingers.",
             text_l="(worst quality, low quality, normal quality), disabled body, sketches, (manicure:1.2), lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, extra fingers, fewer digits, cropped, jpeg artifacts, signature, watermark, username, blurry, momochrome, (ugly) , bad hand ,  bad leg , lost fingers, 4 fingers.",
             clip=get_value_at_index(checkpointloadersimple_316, 1),
@@ -492,7 +501,14 @@ def main(
             model="densepose_r50_fpn_dl.torchscript",
             cmap="Parula (CivitAI)",
             resolution=512,
-            image=get_value_at_index(vaedecode_8, 0),
+            background=True,
+            torso=True,
+            hand=False,
+            foot=False,
+            leg=False,
+            arm=False,
+            head=False,
+            image=get_value_at_index(imagescale_309, 0),
         )
 
         imagetomask_347 = imagetomask.image_to_mask(
@@ -515,7 +531,7 @@ def main(
             positive=get_value_at_index(cliptextencodesdxl_357, 0),
             negative=get_value_at_index(cliptextencodesdxl_358, 0),
             vae=get_value_at_index(checkpointloadersimple_316, 2),
-            pixels=get_value_at_index(vaedecode_8, 0),
+            pixels=get_value_at_index(imagescale_309, 0),
             mask=get_value_at_index(impactgaussianblurmask_350, 0),
         )
 
@@ -591,10 +607,10 @@ def main(
 
             ksampler_359 = ksampler.sample(
                 seed=random.randint(1, 2**64),
-                steps=20,
-                cfg=4,
-                sampler_name="dpmpp_sde",
-                scheduler="karras",
+                steps=25,
+                cfg=0.9,
+                sampler_name="dpmpp_2m_cfg_pp",
+                scheduler="normal",
                 denoise=0.4,
                 model=get_value_at_index(loraloadermodelonly_323, 0),
                 positive=get_value_at_index(inpaintmodelconditioning_356, 0),
