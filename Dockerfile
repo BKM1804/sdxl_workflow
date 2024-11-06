@@ -24,7 +24,7 @@ COPY ComfyUI/custom_nodes/rgthree-comfy/requirements.txt /ComfyUI/custom_nodes/r
 # Install all dependencies in a single layer
 RUN python -m pip install -r /ComfyUI/requirements.txt --no-cache-dir
 RUN python -m pip install -r /ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt --no-cache-dir
-RUN python -m pip install -r /ComfyUI/custom_nodes/comfyui_controlnet_aux/requirements.txt --no-cache-dir
+RUN python -m pip install -r /ComfyUI/custom_nodes/comfyui_densepose/requirements.txt --no-cache-dir
 RUN python -m pip install -r /ComfyUI/custom_nodes/comfyui_face_parsing/requirements.txt --no-cache-dir
 RUN python -m pip install -r /ComfyUI/custom_nodes/ComfyUI-Impact-Pack/requirements.txt --no-cache-dir
 RUN python -m pip install -r /ComfyUI/custom_nodes/comfyui-reactor-node/requirements.txt --no-cache-dir
